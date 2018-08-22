@@ -1,0 +1,42 @@
+.btn {
+  display: flex;
+  height: 40px;
+  background: @blue;
+  color: white;
+  align-items: center;
+  padding: 0 @sp;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  .tr;
+  &:hover {
+  	background: @gray;
+  }
+  &__black {
+  	background: @red;
+  	&:hover {
+  		background: @gray;
+  	}
+  }
+  i {
+    margin-right: @sp/3;
+    font-size: 28px;
+  }
+  &__big {
+    font-size: 20px;
+    height: 90px;
+    border-radius: 5px;
+    &:hover {
+      box-shadow: inset 0px -2px 3px 0px #424242;
+    }
+  }
+  .close {
+    display: none;
+  }
+  &-reg, &-out, &-login {
+    &.close {
+      display: none;
+    }
+  }
+
+}

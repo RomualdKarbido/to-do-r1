@@ -1,0 +1,73 @@
+.modal {
+  position: fixed;
+  background: rgba(96, 125, 139, 0.8);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: flex-start;
+  justify-content: center;
+  display: none;
+  &.active {
+    display: flex;
+    animation: vizible .5s;
+  }
+  &__box {
+    background: white;
+    border-radius: 3px;
+    padding: @sp*2 @sp*2 @sp @sp*2;
+    position: relative;
+    width: 500px;
+    width: 800px;
+    margin-top: 120px;
+    input {
+      border: 1px solid @gray;
+    }
+    .mdi-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: @gray;
+      font-size: 20px;
+      display: block;
+      cursor: pointer;
+      .tr;
+      &:hover {
+        color: @blue;
+      }
+
+    }
+  }
+  &__line {
+    margin-bottom: @sp;
+    &_btns {
+      margin-top: @sp*2;
+      display: flex;
+      justify-content: flex-start;
+      .btn {
+        margin-right: @sp/3;
+      }
+    }
+  }
+  &__title {
+    margin-bottom: @sp;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 1px solid #d2d2d2;
+    padding-bottom: @sp;
+  }
+  &__date {
+    margin-bottom: @sp;
+    color: @gray;
+    i {
+      margin-right: @sp/3;
+      font-size: 18px;
+      position: relative;
+      top: 1px;
+    }
+  }
+  &__text {
+    line-height: 1.4;
+  }
+
+}

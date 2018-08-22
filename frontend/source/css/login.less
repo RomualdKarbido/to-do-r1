@@ -1,0 +1,45 @@
+.login {
+	&__wrap {
+		width: 100%;
+		height: calc(~'100vh - 78px');
+		top: 78px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: url(../img/bg-heand2.jpg) no-repeat;
+		background-size: cover;
+	}
+	&__box {
+		padding: @sp*2;
+		width: 500px;
+		background: rgba(255, 255, 255, 0.3);
+		border-radius: 3px;
+		position: relative;
+		top: -40px;
+		h3 {
+			margin-bottom: @sp;
+			color: white;
+			font-size: 20px;;
+		}
+		&-string {
+			margin-bottom: @sp;
+		}
+		&-btns {
+			display: flex;
+			justify-content: space-between;
+
+		}
+		&-allert {
+			text-align: center;
+			margin-top: @sp;
+			padding-top: @sp*2 - 5px;
+			border-top: 1px solid white;
+			color: white;
+			font-weight: bold;
+			&.close {
+				display: none;
+			}
+		}
+	}
+
+}
