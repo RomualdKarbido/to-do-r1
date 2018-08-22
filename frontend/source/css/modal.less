@@ -65,6 +65,25 @@
       position: relative;
       top: 1px;
     }
+    &-date {
+      &.red {
+        color: @red;
+      }
+    }
+    &-alert {
+      span {
+        background: @red;
+        color: white;
+        font-size: 10px;
+        margin-left: @sp /2;
+
+        padding: 3px 10px;
+        border-radius: 3px;
+        position: relative;
+        top: -3px;
+      }
+
+    }
   }
   &__text {
     line-height: 1.4;

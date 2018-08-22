@@ -49,26 +49,21 @@ class Modal {
         var modTitle = document.querySelector('.modal__title');
         var modDate = document.querySelector('.modal__date-date');
         var modText = document.querySelector('.modal__text');
+        var modallert = document.querySelector('.modal__date-alert');
 
-        console.log(task);
-        console.log(task.date);
-
-        var getDatePlus = new Date(+task.date);
-
-
-
-        //
-        // var a = now;
-        // var dt = new Date();
-        // var hours = dt.getHours();
-        // var minutes = dt.getMinutes();
-        // var resultTime = (hours < 10 ? '0' + hours + 'ч:' : hours + 'ч:') + (minutes < 10 ? '0' + minutes + 'м' : minutes + 'м');
-
-
-
-
+        var now = new Date().getTime();
+        if (task.date < now) {
+            modDate.classList.add('red');
+            modallert.innerHTML = '<span>Просрочено</span>';
+        }
+        else {
+            modDate.classList.remove('red');
+            modallert.innerHTML = '';
+        }
+        var getDate = new Date(+task.date);
+        //выводим данные в модалку
         modTitle.innerHTML = task.header;
-        modDate.innerHTML = getDatePlus;
+        modDate.innerHTML = formatDate(getDate);
         modText.innerHTML = task.details;
     }
 

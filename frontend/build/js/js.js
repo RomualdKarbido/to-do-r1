@@ -120,6 +120,34 @@ function reload5() {
     }
 }
 
+
+function formatDate(date) {
+
+    var dd = date.getDate();
+
+
+    var mm = date.getMonth() + 1;
+    if (mm == 1) {mm = 'января'}
+    else if (mm == 2) mm = ' февраля'
+    else if (mm == 3) mm = ' марта'
+    else if (mm == 4) mm = ' апреля'
+    else if (mm == 5) mm = ' мая'
+    else if (mm == 6) mm = ' июня'
+    else if (mm == 7) mm = ' июля'
+    else if (mm == 8) mm = ' августа'
+    else if (mm == 9) mm = ' сентября'
+    else if (mm == 10) mm = ' октября'
+    else if (mm == 11) mm = ' ноября'
+    else if (mm == 12) mm = ' декабря'
+
+
+
+    var yy = date.getFullYear();
+
+
+    return dd + ' ' + mm + ' ' + yy;
+}
+
 function validateEmail(email) {
     var reg = /^\w+@\w+\.\w{2,4}$/i;
     var address = email.value;

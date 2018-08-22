@@ -378,6 +378,19 @@ input.invalid {
   position: relative;
   top: 1px;
 }
+.modal__date-date.red {
+  color: #ff9800;
+}
+.modal__date-alert span {
+  background: #ff9800;
+  color: white;
+  font-size: 10px;
+  margin-left: 10px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  position: relative;
+  top: -3px;
+}
 .modal__text {
   line-height: 1.4;
 }
