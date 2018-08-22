@@ -195,12 +195,9 @@ function reload3() {
     };
     if (!activeId || activeId < 0) {
         taskTitle.innerHTML = 'Добавить новую задачу'
+        btnSavetask.onclick = () => opm.saveTask(UserAurh);
     }
     else {
         opm.editEdit(activeId);
-    }
-    btnSavetask.onclick = () => {
-
-        opm.saveTask(UserAurh);
     }
 }
