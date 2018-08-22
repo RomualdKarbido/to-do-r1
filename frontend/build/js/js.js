@@ -120,12 +120,9 @@ function reload5() {
     }
 }
 
-
+//конвертим дату в нужный вид
 function formatDate(date) {
-
     var dd = date.getDate();
-
-
     var mm = date.getMonth() + 1;
     if (mm == 1) {mm = 'января'}
     else if (mm == 2) mm = ' февраля'
@@ -139,12 +136,7 @@ function formatDate(date) {
     else if (mm == 10) mm = ' октября'
     else if (mm == 11) mm = ' ноября'
     else if (mm == 12) mm = ' декабря'
-
-
-
     var yy = date.getFullYear();
-
-
     return dd + ' ' + mm + ' ' + yy;
 }
 

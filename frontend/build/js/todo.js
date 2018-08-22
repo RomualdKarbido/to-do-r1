@@ -13,8 +13,6 @@ class Edit { //класс работы с таском
     }
 
     saveTask(id) {
-        console.log('сохранить таск');
-
         var headerTask = document.querySelector('.imputnametask');
         var dateTask = document.querySelector('.imputtimetask');
         var detailsTask = document.querySelector('.texttask');
@@ -23,20 +21,35 @@ class Edit { //класс работы с таском
         now = new Date(now).getTime(); // текущая дата в диавольком формате
         var newdate = dateTask.value * 24 *  60 * 60 * 1000 + now; // дата плюс кол-во дней
 
-
-
         // отправляем запрос на сохраниение
         savetask(id, headerTask.value, newdate, detailsTask.value, function (err) {
             console.log(err);
         }, function () {
             document.location.href = '#todo';
         });
-
-
     }
 
     closeEdit() {
         document.location.href = '#todo';
+    }
+    editEdit(id) {
+        var headerTask = document.querySelector('.imputnametask');
+        var dateTask = document.querySelector('.imputtimetask');
+        var detailsTask = document.querySelector('.texttask');
+
+        getonetask(id, function (err) {
+            console.log(err);
+        }, function (targerTask) {
+            targerTask = JSON.parse(targerTask);
+            var now = new Date().getTime();
+            var days = (targerTask.date - now) / (24 *  60 * 60 * 1000);
+            days = Math.ceil((days)*10)/10;
+
+
+            headerTask.value = targerTask.header;
+            dateTask.value = days;
+            detailsTask.value = targerTask.details;
+        });
     }
 }
 
@@ -77,13 +90,7 @@ var mod = new Modal();
 
 function reload2() {
 
-    // var btnReg = document.querySelector('.btn-reg');
-    // var btnOut = document.querySelector('.btn-out');
-    // var btnLogin = document.querySelector('.btn-login');
-
-
     var modal = document.querySelector('.modal');
-    // var modalBox = document.querySelector('.modal__box');
     var modalBoxCloseIcon = document.querySelector('.modal__box').firstElementChild;
     var modaBbtnClose = document.querySelector('.btn-close');
     var modaBbtnEdit = document.querySelector('.btn-edit');
@@ -188,6 +195,9 @@ function reload3() {
     };
     if (!activeId || activeId < 0) {
         taskTitle.innerHTML = 'Добавить новую задачу'
+    }
+    else {
+        opm.editEdit(activeId);
     }
     btnSavetask.onclick = () => {
 
