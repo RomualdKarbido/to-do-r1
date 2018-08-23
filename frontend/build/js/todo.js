@@ -1,38 +1,37 @@
 var activeId;
 
-
 class Edit { //класс работы с таском
     constructor() {
-
     }
 
     openEdit(id) {
         document.location.href = '#edit';
-        console.log(id);
-        // console.log(id); // id редактируемого таска
-
     }
 
     saveTask(id) {
         var headerTask = document.querySelector('.imputnametask');
         var dateTask = document.querySelector('.imputtimetask');
         var detailsTask = document.querySelector('.texttask');
+        var btnSavetask = document.querySelector('.btn__savetask');
 
         var now = new Date(); //текущая дата
         now = new Date(now).getTime(); // текущая дата в диавольком формате
         var newdate = dateTask.value * 24 * 60 * 60 * 1000 + now; // дата плюс кол-во дней
 
-        // отправляем запрос на сохраниение
-        savetask(id, headerTask.value, newdate, detailsTask.value, function (err) {
-            console.log(err);
-        }, function () {
-            document.location.href = '#todo';
-        });
+        btnSavetask.onclick = () => {
+            // отправляем запрос на сохраниение
+            savetask(id, headerTask.value, newdate, detailsTask.value, function (err) {
+                console.log(err);
+            }, function () {
+                document.location.href = '#todo';
+            });
+        };
     }
 
     closeEdits() {
         document.location.href = '#todo';
     }
+
     editEdit(id) {
         var headerTask = document.querySelector('.imputnametask');
         var dateTask = document.querySelector('.imputtimetask');
@@ -51,11 +50,11 @@ class Edit { //класс работы с таском
             dateTask.value = days;
             detailsTask.value = targerTask.details;
         });
-        btnSavetask.onclick = () => this.savereEdits(id ,headerTask.value, dateTask.value, detailsTask.value);
+        btnSavetask.onclick = () => this.savereEdits(id, headerTask.value, dateTask.value, detailsTask.value);
 
     }
 
-    savereEdits(id , header, date, details) { //сохраняем модефицированный таск
+    savereEdits(id, header, date, details) { //сохраняем модефицированный таск
 
         var userid = sessionStorage.getItem('userId');
         var now = new Date(); //текущая дата
@@ -90,8 +89,8 @@ class Modal {
         var modDate = document.querySelector('.modal__date-date');
         var modText = document.querySelector('.modal__text');
         var modallert = document.querySelector('.modal__date-alert');
-
         var now = new Date().getTime();
+
         if (task.date < now) {
             modDate.classList.add('red');
             modallert.innerHTML = '<span>Просрочено</span>';
@@ -197,11 +196,10 @@ function reload2() {
     editBtns.forEach((i) => {
         i.onclick = function () {
             activeId = this.parentElement.parentElement.id;
-            console.log(activeId);
             opm.openEdit(activeId);
         }
     });
-    modaBbtnEdit.onclick = () => { 
+    modaBbtnEdit.onclick = () => {
         mod.closeModal(modal);
         opm.openEdit(activeId);
     };
@@ -213,18 +211,49 @@ function reload2() {
 function reload3() {
     var taskTitle = document.querySelector('.todo__title');
     var btnBack = document.querySelector('.btn__back');
-    var btnSavetask = document.querySelector('.btn__savetask');
-
+    var btnSavetask = document.querySelector('.btn__savetask'); //кнопка сохранить
+    var btnClear = document.querySelector('.btn__clear'); //кнопка очистить
+    var inputBlock = document.querySelector('.todo__item_edit');
+    var headerTask = document.querySelector('.imputnametask');
+    var dateTask = document.querySelector('.imputtimetask');
+    var detailsTask = document.querySelector('.texttask');
     btnBack.onclick = () => {
         activeId = -1;
         opm.closeEdits();
     };
-
-    if (!activeId || activeId < 0) { //если нет id задачи
+    //если нет id задачи
+    if (!activeId || activeId < 0) {
         taskTitle.innerHTML = 'Добавить новую задачу';
-        btnSavetask.onclick = () => opm.saveTask(UserAurh);
+        validmini();
+        opm.saveTask(UserAurh);
     }
-    else {                          //если есть id задачи
+    //если есть id задачи
+    else {
+        validmini();
         opm.editEdit(activeId);
     }
+
+    function validmini() {
+        inputBlock.onmousemove = function () {
+            if (headerTask.value <= 0
+                || dateTask.value <= 0
+                || detailsTask.value <= 0) {
+
+                btnSavetask.setAttribute('disabled', 'disabled');
+            }
+            else {
+                btnSavetask.removeAttribute('disabled', 'disabled');
+
+            }
+        }
+    }
+    btnClear.onclick = () => {
+        headerTask.value = '';
+        dateTask.value = '';
+        detailsTask.value = '';
+    }
 }
+
+
+
+

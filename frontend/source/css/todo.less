@@ -75,6 +75,10 @@
         margin-bottom: 0;
         .btn {
           margin-right: @sp/3;
+          &[disabled = disabled] {
+
+            opacity: 0.5;
+          }
         }
       }
     }
@@ -120,6 +124,7 @@
       font-weight: bold;
       margin-bottom: @sp/2;
       cursor: pointer;
+      color: #4d4d4d;
       .tr;
       &:hover {
         color: @blue;
