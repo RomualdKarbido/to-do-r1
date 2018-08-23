@@ -13,6 +13,21 @@ function  basePostRequest(address, body, onError, onSuccesfull) {
     }
 }
 
+function  basePuttRequest(address, body, onError, onSuccesfull) {
+    var xhr2 = new XMLHttpRequest();
+    xhr2.open('PUT',  "http://localhost:8000" + address, false);
+    xhr2.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr2.withCredentials = true;
+    xhr2.send(JSON.stringify(body));
+
+    if (xhr2.status == 200) {
+        onSuccesfull(xhr2.responseText);
+    }
+    else {
+        onError(xhr2.responseText);
+    }
+}
+
 function  baseGetRequest(address, onError, onSuccesfull) {
     var xhr2 = new XMLHttpRequest();
     xhr2.open('GET',  'http://localhost:8000' + address, false);
@@ -54,4 +69,14 @@ function savetask(userid, headerTask, dateTask, detailsTask,  onError, onSuccesf
 //Получение таска по ID
 function getonetask(activeId, onError, onSuccesfull) {
     baseGetRequest("/task/one/" + activeId, onError, onSuccesfull);
+}
+//Получение таска по ID
+function saveedittask(taskInfo,  onError, onSuccesfull) {
+
+    console.log(taskInfo);
+
+    var dateTask = String(taskInfo.date);
+
+    basePuttRequest("/task/" + taskInfo.id, {user_id: taskInfo.userId, header: taskInfo.header, details: taskInfo.details, date: dateTask},
+        onError, onSuccesfull);
 }

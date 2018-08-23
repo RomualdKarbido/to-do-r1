@@ -3,6 +3,7 @@ var activeId;
 
 class Edit { //класс работы с таском
     constructor() {
+
     }
 
     openEdit(id) {
@@ -19,7 +20,7 @@ class Edit { //класс работы с таском
 
         var now = new Date(); //текущая дата
         now = new Date(now).getTime(); // текущая дата в диавольком формате
-        var newdate = dateTask.value * 24 *  60 * 60 * 1000 + now; // дата плюс кол-во дней
+        var newdate = dateTask.value * 24 * 60 * 60 * 1000 + now; // дата плюс кол-во дней
 
         // отправляем запрос на сохраниение
         savetask(id, headerTask.value, newdate, detailsTask.value, function (err) {
@@ -29,28 +30,54 @@ class Edit { //класс работы с таском
         });
     }
 
-    closeEdit() {
+    closeEdits() {
         document.location.href = '#todo';
     }
     editEdit(id) {
         var headerTask = document.querySelector('.imputnametask');
         var dateTask = document.querySelector('.imputtimetask');
         var detailsTask = document.querySelector('.texttask');
+        var btnSavetask = document.querySelector('.btn__savetask');
 
-        getonetask(id, function (err) {
+        getonetask(id, function (err) { //получаем таск по id и выводим зн. в поля
             console.log(err);
         }, function (targerTask) {
             targerTask = JSON.parse(targerTask);
             var now = new Date().getTime();
-            var days = (targerTask.date - now) / (24 *  60 * 60 * 1000);
-            days = Math.ceil((days)*10)/10;
-
+            var days = (targerTask.date - now) / (24 * 60 * 60 * 1000);
+            days = Math.ceil((days) * 10) / 10;
 
             headerTask.value = targerTask.header;
             dateTask.value = days;
             detailsTask.value = targerTask.details;
         });
+        btnSavetask.onclick = () => this.savereEdits(id ,headerTask.value, dateTask.value, detailsTask.value);
+
     }
+
+    savereEdits(id , header, date, details) { //сохраняем модефицированный таск
+
+        var userid = sessionStorage.getItem('userId');
+        var now = new Date(); //текущая дата
+        now = new Date(now).getTime(); // текущая дата в диавольком формате
+        var newdate = date * 24 * 60 * 60 * 1000 + now; // дата плюс кол-во дней
+
+
+        var taskInfo = {
+            id: id,
+            userId: userid,
+            header: header,
+            date: newdate,
+            details: details,
+        };
+        saveedittask(taskInfo, function (err) { //запрос на сохранение
+            console.log(err);
+        }, function () {
+            console.log('перезаписали таск');
+        });
+    }
+
+
 }
 
 class Modal {
@@ -140,7 +167,6 @@ function reload2() {
         opm.openEdit();
     };
 
-
     // просмотр таска (открытие модалки)
     headerTask.forEach((i) => {
         i.onclick = function () {
@@ -156,7 +182,6 @@ function reload2() {
         }
     });
 
-
     //закрытие модалки
     modal.onclick = (event) => {
         if (event.target == modal
@@ -165,7 +190,6 @@ function reload2() {
             mod.closeModal(modal);
         }
     };
-
 
     // //редактирование таска
     editBtns.forEach((i) => {
@@ -189,15 +213,19 @@ function reload3() {
     var taskTitle = document.querySelector('.todo__title');
     var btnBack = document.querySelector('.btn__back');
     var btnSavetask = document.querySelector('.btn__savetask');
+
     btnBack.onclick = () => {
         activeId = -1;
-        opm.closeEdit();
+        opm.closeEdits();
     };
-    if (!activeId || activeId < 0) {
-        taskTitle.innerHTML = 'Добавить новую задачу'
+
+    if (!activeId || activeId < 0) { //если нет id задачи
+        taskTitle.innerHTML = 'Добавить новую задачу';
         btnSavetask.onclick = () => opm.saveTask(UserAurh);
     }
-    else {
+    else {                          //если есть id задачи
         opm.editEdit(activeId);
+
+
     }
 }
