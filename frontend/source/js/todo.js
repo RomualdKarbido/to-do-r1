@@ -73,7 +73,7 @@ class Edit { //класс работы с таском
         saveedittask(taskInfo, function (err) { //запрос на сохранение
             console.log(err);
         }, function () {
-            console.log('перезаписали таск');
+            document.location.href = '#todo';
         });
     }
 
@@ -108,7 +108,9 @@ class Modal {
     }
 
     closeModal(modal) {
+        activeId = -1;
         modal.classList.remove('active');
+
     }
 }
 
@@ -191,7 +193,7 @@ function reload2() {
         }
     };
 
-    // //редактирование таска
+    // //редактирование таска обход
     editBtns.forEach((i) => {
         i.onclick = function () {
             activeId = this.parentElement.parentElement.id;
@@ -208,7 +210,6 @@ function reload2() {
 }
 
 //редактирование таска или создание нового
-
 function reload3() {
     var taskTitle = document.querySelector('.todo__title');
     var btnBack = document.querySelector('.btn__back');
@@ -225,7 +226,5 @@ function reload3() {
     }
     else {                          //если есть id задачи
         opm.editEdit(activeId);
-
-
     }
 }

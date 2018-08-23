@@ -72,9 +72,6 @@ function getonetask(activeId, onError, onSuccesfull) {
 }
 //Получение таска по ID
 function saveedittask(taskInfo,  onError, onSuccesfull) {
-
-    console.log(taskInfo);
-
     var dateTask = String(taskInfo.date);
 
     basePuttRequest("/task/" + taskInfo.id, {user_id: taskInfo.userId, header: taskInfo.header, details: taskInfo.details, date: dateTask},
