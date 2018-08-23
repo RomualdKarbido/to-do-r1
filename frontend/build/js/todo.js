@@ -108,7 +108,6 @@ class Modal {
     }
 
     closeModal(modal) {
-        activeId = -1;
         modal.classList.remove('active');
 
     }
@@ -190,6 +189,7 @@ function reload2() {
             || event.target == modaBbtnClose
             || event.target == modalBoxCloseIcon) {
             mod.closeModal(modal);
+            activeId = -1;
         }
     };
 
@@ -201,7 +201,7 @@ function reload2() {
             opm.openEdit(activeId);
         }
     });
-    modaBbtnEdit.onclick = () => {
+    modaBbtnEdit.onclick = () => { 
         mod.closeModal(modal);
         opm.openEdit(activeId);
     };
