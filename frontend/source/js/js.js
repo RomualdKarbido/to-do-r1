@@ -124,7 +124,9 @@ function reload5() {
 function formatDate(date) {
     var dd = date.getDate();
     var mm = date.getMonth() + 1;
-    if (mm == 1) {mm = 'января'}
+    if (mm == 1) {
+        mm = 'января'
+    }
     else if (mm == 2) mm = ' февраля'
     else if (mm == 3) mm = ' марта'
     else if (mm == 4) mm = ' апреля'
@@ -158,7 +160,6 @@ function validatePass(pass) {
 
 function authorizedUser() {
     UserAurh = sessionStorage.getItem('userId');
-    console.log(UserAurh);
     if (!UserAurh) {
         topmenuBtn2.classList.add('close');
         topmenuBtn4.classList.add('close');
@@ -176,11 +177,11 @@ function authorizedUser() {
 authorizedUser();
 
 //выход обманка
-
 function exit() {
     sessionStorage.removeItem('userId');
     authorizedUser();
 }
+
 topmenuBtn2.onclick = function () {
     exit();
 };
