@@ -127,6 +127,25 @@ input.invalid {
 .btn-login.close {
   display: none;
 }
+.btn.addtask.top {
+  border: 5px solid white;
+  position: fixed;
+  top: 40px;
+  left: calc(50% - 40px);
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+.btn.addtask.top span {
+  display: none;
+}
+.btn.addtask.top i {
+  font-size: 30px;
+}
 .header {
   position: fixed;
   background: #00bcd4;

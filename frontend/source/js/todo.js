@@ -121,13 +121,13 @@ function reload2() {
     var modalBoxCloseIcon = document.querySelector('.modal__box').firstElementChild;
     var modaBbtnClose = document.querySelector('.btn-close');
     var modaBbtnEdit = document.querySelector('.btn-edit');
-
     var taskPlase = document.querySelector('.todo__item-wrap'); //место для тасков
-
-
+    var wrap = document.querySelector('.todo__wrap');
+    var headtext = document.querySelector('.todo__title-wrap');
     //получаем таски
     var UserAurh = sessionStorage.getItem('userId');
     var tasksAll;
+
 
     gettask(UserAurh, function (err) {
         console.log(err);
@@ -203,6 +203,19 @@ function reload2() {
         mod.closeModal(modal);
         opm.openEdit(activeId);
     };
+
+    //условие для кнопки
+    wrap.onscroll = function () {
+        var positionY = headtext.getBoundingClientRect().top;
+        console.log(positionY);
+        if(positionY <= 40) {
+            addTask.classList.add('top');
+        }
+        else {
+            addTask.classList.remove('top');
+        }
+    };
+
 
 
 }
