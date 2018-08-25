@@ -406,6 +406,9 @@ input.invalid {
 .modal__date-date.red {
   color: #ff9800;
 }
+.modal__date-date.green {
+  color: #00bcd4;
+}
 .modal__date-alert span {
   background: #ff9800;
   color: white;
@@ -415,6 +418,9 @@ input.invalid {
   border-radius: 3px;
   position: relative;
   top: -3px;
+}
+.modal__date-alert span.green {
+  background: #00bcd4;
 }
 .modal__text {
   line-height: 1.4;

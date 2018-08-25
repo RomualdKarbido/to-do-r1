@@ -88,13 +88,20 @@ class Modal {
         var modallert = document.querySelector('.modal__date-alert');
         var now = new Date().getTime();
 
+        var now = new Date().getTime();
+        var days = (task.date - now) / (24 * 60 * 60 * 1000);
+        days = Math.ceil((days) * 10) / 10;
+
         if (task.date < now) {
             modDate.classList.add('red');
-            modallert.innerHTML = '<span>Просрочено</span>';
+            modDate.classList.remove('green');
+            modallert.innerHTML = '<span>Просрочено на ' + days + ' дн.</span>';
         }
         else {
+
             modDate.classList.remove('red');
-            modallert.innerHTML = '';
+            modDate.classList.add('green');
+            modallert.innerHTML = '<span class="green">Осталось: ' + days + ' дн.</span>';
         }
         var getDate = new Date(+task.date);
         //выводим данные в модалку
