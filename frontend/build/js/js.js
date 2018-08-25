@@ -54,6 +54,7 @@ function reload4() {
     var email = document.querySelector('.regEmail');
     var pass = document.querySelector('.regPass');
     var repass = document.querySelector('.regPassRepeat');
+
     var allert = document.querySelector('.login__box-allert');
 
     btnLogin.onclick = function () {
@@ -62,6 +63,7 @@ function reload4() {
 
 
     btnSubmit.onclick = function () {
+
         var valid = validateEmail(email);
         if (valid == false) {
             email.classList.add('invalid');
@@ -69,24 +71,33 @@ function reload4() {
         }
         else {
             email.classList.remove('invalid');
-            var validpass = validatePass(pass);
-            var validpassRep = validatePass(repass);
-            if (validpass != validpassRep
-                || validpass == false
-                || validpassRep == false) {
+
+            var validpass = validatePass(pass.value);
+            var validpassRep = validatePass(repass.value);
+
+            if (pass.value != repass.value
+                || validpass == 'false'
+                || validpassRep == 'false') {
                 repass.classList.add('invalid');
+                return;
             }
             else {
                 repass.classList.remove('invalid');
-
                 register(email.value, pass.value, function (err) {
                     console.log(err);
+                    allert.classList.remove('close');
+                    allert.innerHTML = 'Это E-mail уже зарегистрирован в системе';
+                    setTimeout(function () {
+                        allert.classList.add('close');
+                    }, 3000);
+
                 }, function () {
                     allert.classList.remove('close');
+                    allert.innerHTML = 'Вы успешно зарегистрированы!';
                     setTimeout(function () {
                         allert.classList.add('close');
                         document.location.href = '#login';
-                    }, 3000);
+                    }, 1500);
 
                 });
             }
@@ -151,10 +162,12 @@ function validateEmail(email) {
 }
 
 function validatePass(pass) {
-    var reg = /\w{4,}/g;
-    var ps = pass.value;
-    if (reg.test(ps) === false) {
-        return false;
+    var reg = /\w{2,}/g;
+    if (reg.test(pass) === false) {
+        return 'false';
+    }
+    else {
+        return 'true';
     }
 }
 
