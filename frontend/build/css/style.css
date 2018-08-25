@@ -293,6 +293,7 @@ input.invalid {
 }
 .todo__item-left {
   margin-right: 40px;
+  overflow: hidden;
 }
 .todo__item-btns {
   display: flex;
@@ -392,6 +393,8 @@ input.invalid {
   font-size: 20px;
   border-bottom: 1px solid #d2d2d2;
   padding-bottom: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .modal__date {
   margin-bottom: 20px;
@@ -424,6 +427,11 @@ input.invalid {
 }
 .modal__text {
   line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.modal__text p {
+  margin-bottom: 20px;
 }
 textarea {
   border: 1px solid #607d8b;
