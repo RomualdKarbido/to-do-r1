@@ -16,9 +16,7 @@ class Edit { //класс работы с таском
 
         // отправляем запрос на сохраниение
         btnSavetask.onclick = () => {
-            var now = new Date(); //текущая дата
-            now = new Date(now).getTime(); // текущая дата в диавольком формате
-            var newdate = dateTask.value * 24 * 60 * 60 * 1000 + now ; // дата плюс кол-во дней
+            var newdate = dateTask.value * 24 * 60 * 60 * 1000 + new Date().getTime(); // дата плюс кол-во дней
             savetask(id, headerTask.value, newdate, detailsTask.value, function (err) {
                 console.log(err);
             }, function () {
@@ -135,7 +133,7 @@ function reload2() {
         drawTask(tasksAll);
     });
 
-    //выводим таски
+    // выводим таски
     function drawTask(task) {
         for (n = 0; n < task.length; n++) {
             var taskNew = document.createElement('div');
@@ -161,7 +159,7 @@ function reload2() {
     var headerTask = document.querySelectorAll('.todo__item-header');
 
 
-    //переход на стр добавления таска
+    // переход на стр добавления таска
     addTask.onclick = () => {
         opm.openEdit();
     };
@@ -181,7 +179,7 @@ function reload2() {
         }
     });
 
-    //закрытие модалки
+    // закрытие модалки
     modal.onclick = (event) => {
         if (event.target == modal
             || event.target == modaBbtnClose
@@ -191,7 +189,7 @@ function reload2() {
         }
     };
 
-    // //редактирование таска обход
+    //редактирование таска обход
     editBtns.forEach((i) => {
         i.onclick = function () {
             activeId = this.parentElement.parentElement.id;
@@ -243,7 +241,7 @@ function reload3() {
 
     function validmini() {
         inputBlock.onmousemove = function () {
-            if (headerTask.value <= 0 || detailsTask.value <= 0) {
+            if (headerTask.value <= 0 || detailsTask.value <= 0 || dateTask.value == 0) {
                 btnSavetask.setAttribute('disabled', 'disabled');
             }
             else {
@@ -251,7 +249,6 @@ function reload3() {
             }
         }
     }
-
     btnClear.onclick = () => {
         headerTask.value = '';
         dateTask.value = '';
