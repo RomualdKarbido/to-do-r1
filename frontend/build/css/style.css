@@ -131,7 +131,7 @@ input.invalid {
   border: 5px solid white;
   position: fixed;
   top: 40px;
-  left: calc(50% - 45px);
+  left: calc(50% - 40px);
   z-index: 10;
   width: 80px;
   height: 80px;
@@ -363,17 +363,19 @@ input.invalid {
 .todo.tiles .todo__item {
   flex: 1;
   background: white;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #e2dfdf;
   border-radius: 3px;
   padding: 30px;
-  min-width: calc(50% - 5px);
-  max-width: calc(50% - 5px);
-  margin-bottom: 10px;
+  min-width: calc(50% - 7px);
+  max-width: calc(50% - 7px);
+  margin-bottom: 12px;
   position: relative;
   margin-right: 0;
   transition: all 0.1s;
-  box-shadow: 0px 1px 1px #f3f3f3;
   display: block;
+}
+.todo.tiles .todo__item:hover {
+  box-shadow: -1px 2px 1px #f5f5f5;
 }
 .todo.tiles .todo__item-header {
   padding-right: 60px;
