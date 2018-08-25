@@ -379,10 +379,9 @@ input.invalid {
 }
 .todo.tiles .todo__item-header {
   padding-right: 60px;
-  font-size: 16px;
+  font-size: 18px;
 }
 .todo.tiles .todo__item-text {
-  font-size: 14px;
   border-top: 1px solid #f1f1f1;
   padding-top: 10px;
 }
