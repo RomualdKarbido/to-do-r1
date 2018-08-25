@@ -74,7 +74,7 @@ function getonetask(activeId, onError, onSuccesfull) {
     baseGetRequest("/task/one/" + activeId, onError, onSuccesfull);
 }
 
-//Получение таска по ID
+//Сохранение измененного таска по ID
 function saveedittask(taskInfo, onError, onSuccesfull) {
     var dateTask = String(taskInfo.date);
 

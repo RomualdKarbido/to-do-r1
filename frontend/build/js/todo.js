@@ -14,12 +14,11 @@ class Edit { //класс работы с таском
         var detailsTask = document.querySelector('.texttask');
         var btnSavetask = document.querySelector('.btn__savetask');
 
-        var now = new Date(); //текущая дата
-        now = new Date(now).getTime(); // текущая дата в диавольком формате
-        var newdate = dateTask.value * 24 * 60 * 60 * 1000 + now; // дата плюс кол-во дней
-
+        // отправляем запрос на сохраниение
         btnSavetask.onclick = () => {
-            // отправляем запрос на сохраниение
+            var now = new Date(); //текущая дата
+            now = new Date(now).getTime(); // текущая дата в диавольком формате
+            var newdate = dateTask.value * 24 * 60 * 60 * 1000 + now ; // дата плюс кол-во дней
             savetask(id, headerTask.value, newdate, detailsTask.value, function (err) {
                 console.log(err);
             }, function () {
@@ -207,7 +206,7 @@ function reload2() {
     //условие для кнопки
     wrap.onscroll = function () {
         var positionY = headtext.getBoundingClientRect().top;
-        if(positionY <= 40) addTask.classList.add('top');
+        if (positionY <= 40) addTask.classList.add('top');
         else addTask.classList.remove('top');
     };
 }
@@ -222,10 +221,12 @@ function reload3() {
     var headerTask = document.querySelector('.imputnametask');
     var dateTask = document.querySelector('.imputtimetask');
     var detailsTask = document.querySelector('.texttask');
+
     btnBack.onclick = () => {
         activeId = -1;
         opm.closeEdits();
     };
+
     //если нет id задачи
     if (!activeId || activeId < 0) {
         taskTitle.innerHTML = 'Добавить новую задачу';
@@ -242,18 +243,15 @@ function reload3() {
 
     function validmini() {
         inputBlock.onmousemove = function () {
-            if (headerTask.value <= 0
-                || dateTask.value <= 0
-                || detailsTask.value <= 0) {
-
+            if (headerTask.value <= 0 || detailsTask.value <= 0) {
                 btnSavetask.setAttribute('disabled', 'disabled');
             }
             else {
                 btnSavetask.removeAttribute('disabled', 'disabled');
-
             }
         }
     }
+
     btnClear.onclick = () => {
         headerTask.value = '';
         dateTask.value = '';
