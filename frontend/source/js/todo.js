@@ -150,11 +150,6 @@ function reload2() {
         BtnTiles.classList.add('active');
     }
 
-
-
-
-
-
     gettask(UserAurh, function (err) {
         console.log(err);
     }, function (tasks) {
