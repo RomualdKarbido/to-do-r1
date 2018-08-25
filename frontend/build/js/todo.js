@@ -119,6 +119,7 @@ class Modal {
 var opm = new Edit();
 var mod = new Modal();
 
+// страница просмотра тасков
 function reload2() {
 
     var modal = document.querySelector('.modal');
@@ -131,6 +132,27 @@ function reload2() {
     //получаем таски
     var UserAurh = sessionStorage.getItem('userId');
     var tasksAll;
+
+    var BtnList = document.querySelector('.todo__list');
+    var BtnTiles = document.querySelector('.todo__tiles');
+    var ContentBlock = document.querySelector('.todo');
+
+
+    BtnList.onclick = () => {
+        ContentBlock.classList.remove('tiles');
+        BtnTiles.classList.remove('active');
+        BtnList.classList.add('active');
+
+    }
+    BtnTiles.onclick = () => {
+        ContentBlock.classList.add('tiles');
+        BtnList.classList.remove('active');
+        BtnTiles.classList.add('active');
+    }
+
+
+
+
 
 
     gettask(UserAurh, function (err) {
