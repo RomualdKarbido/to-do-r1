@@ -207,17 +207,9 @@ function reload2() {
     //условие для кнопки
     wrap.onscroll = function () {
         var positionY = headtext.getBoundingClientRect().top;
-        console.log(positionY);
-        if(positionY <= 40) {
-            addTask.classList.add('top');
-        }
-        else {
-            addTask.classList.remove('top');
-        }
+        if(positionY <= 40) addTask.classList.add('top');
+        else addTask.classList.remove('top');
     };
-
-
-
 }
 
 //редактирование таска или создание нового
@@ -239,11 +231,13 @@ function reload3() {
         taskTitle.innerHTML = 'Добавить новую задачу';
         validmini();
         opm.saveTask(UserAurh);
+        activeId = -1;
     }
     //если есть id задачи
     else {
         validmini();
         opm.editEdit(activeId);
+        activeId = -1;
     }
 
     function validmini() {
