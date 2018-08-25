@@ -29,6 +29,7 @@ function reload() {
             else {
                 login(email.value, pass.value, function (err) {
                     console.log(err);
+                    pass.classList.add('invalid');
                 }, function (userId) {
                     sessionStorage.setItem('userId', userId);
                     pass.classList.remove('invalid');
