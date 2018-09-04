@@ -242,6 +242,7 @@ input.invalid {
   width: 100%;
   height: calc(100vh - 82px);
   background: url(../img/fon-1.jpg) no-repeat;
+  background-size: cover;
   top: 82px;
   display: flex;
   align-items: flex-start;

@@ -15,6 +15,13 @@
 		"oAP": "\/build\/build",
 		"oF": 0
 		},
+	"\/build.zip": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/build\/build.zip",
+		"oF": 0
+		},
 	"\/source\/css\/btn.less": {
 		"aP": 0,
 		"bl": 0,
